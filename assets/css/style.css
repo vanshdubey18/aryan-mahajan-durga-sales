@@ -183,7 +183,7 @@ header.site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 0;
+  padding-top: 12px; padding-bottom: 12px;
   gap: 20px;
 }
 .brand {
@@ -261,7 +261,7 @@ nav.main-nav a.active { color: var(--maroon); border-color: var(--gold); }
   inset: 0;
   background: linear-gradient(100deg, rgba(20,28,36,0.92) 5%, rgba(20,28,36,0.55) 48%, rgba(20,28,36,0.25) 80%);
 }
-.hero-inner { position: relative; z-index: 2; padding: 90px 0; }
+.hero-inner { position: relative; z-index: 2; padding-top: 90px; padding-bottom: 90px; }
 .hero .eyebrow { color: var(--gold-light); }
 .hero .eyebrow::before { background: var(--gold-light); }
 .hero h1 { color: var(--white); max-width: 760px; }
@@ -285,7 +285,7 @@ nav.main-nav a.active { color: var(--maroon); border-color: var(--gold); }
   min-height: 42vh;
   padding-top: 40px;
 }
-.page-hero .hero-inner { padding: 60px 0; }
+.page-hero .hero-inner { padding-top: 60px; padding-bottom: 60px; }
 
 /* ---------- Trust strip ---------- */
 .trust-strip {
@@ -654,12 +654,14 @@ footer.site-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding-top: 20px; padding-bottom: 20px;
   font-size: 0.8rem;
   color: #8b95a0;
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.m-bar { display: none; }
 
 /* WhatsApp floating button */
 .wa-float {
@@ -769,14 +771,32 @@ footer.site-footer {
   .section { padding: 52px 0; }
   .section.tight { padding: 36px 0; }
   .section-head { margin-bottom: 2rem; }
-  .hero-inner { padding: 44px 0; }
-  .page-hero .hero-inner { padding: 40px 0; }
+  .hero-inner { padding-top: 44px; padding-bottom: 44px; }
+  .page-hero .hero-inner { padding-top: 40px; padding-bottom: 40px; }
   .trust-strip { padding: 26px 0; }
   .cta-band { padding: 48px 0; }
 
   /* Smaller, tighter-to-corner FAB so it clips less body text */
-  .wa-float { width: 50px; height: 50px; right: 14px; bottom: 14px; }
-  .wa-float svg { width: 24px; height: 24px; }
+  /* phones: a fixed Call / WhatsApp bar replaces the floating button so nothing gets covered */
+  .wa-float { display: none; }
+  .nav-cta .btn { display: none; }
+  .m-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    height: calc(58px + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
+    background: var(--navy-darker);
+    box-shadow: 0 -6px 20px rgba(0,0,0,.18);
+  }
+  .m-bar a { display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--white); font-weight: 700; font-size: 1rem; }
+  .m-bar a + a { background: #1f8f4e; }
+  .m-bar svg { width: 20px; height: 20px; }
+  footer.site-footer { padding-bottom: calc(58px + env(safe-area-inset-bottom)); }
 }
 
 /* Narrow phones: the 3-col trust-strip pins the last column's text to the
