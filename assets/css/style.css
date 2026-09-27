@@ -1,3 +1,37 @@
+@font-face {
+  font-family: "Stardos Stencil";
+  src: url("../fonts/stardos-stencil-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tiro Devanagari";
+  src: url("../fonts/tiro-devanagari.woff2") format("woff2");
+  font-display: swap;
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+25CC, U+A830-A839, U+A8E0-A8FF;
+}
+@font-face {
+  font-family: "Kalam";
+  src: url("../fonts/kalam-latin-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20B9, U+2212;
+}
+@font-face {
+  font-family: "Kalam";
+  src: url("../fonts/kalam-latin-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20B9, U+2212;
+}
+@font-face {
+  font-family: "Kalam";
+  src: url("../fonts/kalam-devanagari-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+25CC, U+A8E0-A8FF;
+}
+
 /* ============================================================
    Durga Sales Group — Design System
    Palette pulled from the brand's own logo + product packaging
@@ -649,6 +683,51 @@ footer.site-footer {
   50% { box-shadow: 0 8px 24px rgba(37,211,102,0.7); }
   100% { box-shadow: 0 8px 24px rgba(37,211,102,0.35); }
 }
+
+/* Jute-sack stencil ribbon */
+.jute {
+  overflow: hidden;
+  background-color: #b89663;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(80, 55, 25, 0.16) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(80, 55, 25, 0.18) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(255, 240, 210, 0.12) 0 2px, transparent 2px 7px);
+  border-top: 2px dashed rgba(60, 40, 18, 0.35);
+  border-bottom: 2px dashed rgba(60, 40, 18, 0.35);
+  padding: 16px 0;
+  color: rgba(35, 22, 10, 0.82);
+}
+.jute-track { display: flex; width: max-content; animation: jute-slide 48s linear infinite; }
+.jute-track span { font-family: "Stardos Stencil", Impact, sans-serif; font-weight: 700; font-size: 1.35rem; letter-spacing: 0.14em; white-space: nowrap; padding-right: 2.2em; }
+.jute-track i { font-style: normal; font-family: "Tiro Devanagari", "Noto Serif Devanagari", serif; font-weight: 400; letter-spacing: 0; margin-left: 0.5em; opacity: 0.8; }
+@keyframes jute-slide { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .jute-track { animation: none; } }
+
+/* Aaj ka bhav: chalkboard rate list */
+.section.rates { background: var(--cream-dark); }
+.board {
+  max-width: 680px;
+  margin: 0 auto;
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(255,255,255,.07), transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(255,255,255,.05), transparent 50%),
+    #1f2a25;
+  border: 14px solid #6b4a2b;
+  border-image: linear-gradient(135deg, #82603c, #5a3d22 40%, #7a5634 70%, #4f3520) 1;
+  box-shadow: inset 0 0 40px rgba(0,0,0,.45), var(--shadow-lg);
+  color: #eeebe2;
+  font-family: "Kalam", "Segoe Print", cursive;
+  padding: 26px clamp(18px, 4vw, 34px) 22px;
+}
+.board-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; border-bottom: 2px dashed rgba(238,235,226,.35); padding-bottom: 10px; margin-bottom: 6px; }
+.board-title span { font-size: 2rem; line-height: 1.2; }
+.board-title small { font-size: 1.05rem; opacity: .75; }
+.board ul { list-style: none; margin: 0; padding: 0; }
+.board li a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 4px; border-bottom: 1px dashed rgba(238,235,226,.18); font-size: 1.3rem; transition: background .2s; }
+.board li a:hover { background: rgba(255,255,255,.06); }
+.board li small { font-size: .95rem; opacity: .6; margin-left: 6px; }
+.board .ask { color: #f1d27a; font-size: 1.1rem; white-space: nowrap; }
+.board-foot { margin: 16px 0 0; font-size: 1.05rem; color: #eeebe2; opacity: .8; line-height: 1.45; }
 
 /* Breadcrumb-ish list marks for quality page */
 .check-list { display: flex; flex-direction: column; gap: 14px; }
