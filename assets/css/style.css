@@ -256,7 +256,8 @@ nav.main-nav a.active { color: var(--maroon); border-color: var(--gold); }
 /* ---------- Trust strip ---------- */
 .trust-strip {
   background: var(--navy-darker);
-  padding: 26px 0;
+  border-top: 1px solid rgba(224, 180, 88, 0.25);
+  padding: 34px 0;
 }
 .trust-strip ul {
   display: grid;
@@ -265,15 +266,37 @@ nav.main-nav a.active { color: var(--maroon); border-color: var(--gold); }
   text-align: center;
 }
 .trust-strip li {
-  color: #dfe6ec;
-  font-size: 0.85rem;
-  font-weight: 600;
+  position: relative;
+  color: #eef2f5;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
-.trust-strip svg { width: 26px; height: 26px; color: var(--gold-light); }
+.trust-strip li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: -9px;
+  width: 1px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.trust-strip .badge-ring {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(224, 180, 88, 0.4);
+  background: rgba(224, 180, 88, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trust-strip svg { width: 22px; height: 22px; color: var(--gold-light); }
 
 /* ---------- Sections ---------- */
 .section { padding: 88px 0; }
@@ -340,16 +363,17 @@ nav.main-nav a.active { color: var(--maroon); border-color: var(--gold); }
   padding: 26px 24px;
 }
 .feature .icon {
-  width: 46px;
-  height: 46px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: var(--cream-dark);
+  background: linear-gradient(150deg, var(--cream-dark) 0%, #eddfc0 100%);
+  border: 1px solid rgba(201, 148, 47, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
-.feature .icon svg { width: 22px; height: 22px; color: var(--maroon); }
+.feature .icon svg { width: 23px; height: 23px; color: var(--maroon); }
 .feature h3 { font-size: 1.05rem; margin-bottom: 6px; }
 .feature p { font-size: 0.9rem; margin: 0; }
 
