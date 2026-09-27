@@ -1,85 +1,81 @@
-// Durga Sales Group — site scripts (no build step, no dependencies)
+(function () {
+  var WA = "919797110055";
+  var doc = document.documentElement;
 
-document.addEventListener("DOMContentLoaded", function () {
-  var WA_NUMBER = "919797110055"; // Nav Durga Sales primary WhatsApp
+  var year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
 
-  /* Mobile nav toggle */
-  var toggle = document.querySelector(".nav-toggle");
-  var nav = document.querySelector("nav.main-nav");
-  if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      nav.classList.toggle("open");
-      toggle.classList.toggle("is-open");
+  // mobile menu
+  var btn = document.querySelector(".menu-btn");
+  if (btn) {
+    var setMenu = function (open) {
+      doc.classList.toggle("menu-open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    };
+    btn.addEventListener("click", function () { setMenu(!doc.classList.contains("menu-open")); });
+    document.querySelectorAll(".nav a").forEach(function (a) {
+      a.addEventListener("click", function () { setMenu(false); });
     });
-    nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () { nav.classList.remove("open"); });
-    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
   }
 
-  /* Gallery lightbox */
-  var lightbox = document.querySelector(".lightbox");
-  if (lightbox) {
-    var lightboxImg = lightbox.querySelector("img");
-    document.querySelectorAll("[data-lightbox]").forEach(function (el) {
-      el.addEventListener("click", function () {
-        var src = el.getAttribute("data-lightbox");
-        var alt = el.getAttribute("data-caption") || "";
-        lightboxImg.setAttribute("src", src);
-        lightboxImg.setAttribute("alt", alt);
-        lightbox.classList.add("open");
+  // reveal on scroll
+  var items = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
       });
-    });
-    lightbox.addEventListener("click", function (e) {
-      if (e.target === lightbox || e.target.classList.contains("close")) {
-        lightbox.classList.remove("open");
-        lightboxImg.setAttribute("src", "");
-      }
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") {
-        lightbox.classList.remove("open");
-        lightboxImg.setAttribute("src", "");
-      }
-    });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* Enquiry form -> builds a prefilled WhatsApp message (no backend needed) */
-  var form = document.getElementById("enquiry-form");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var data = new FormData(form);
-      var name = (data.get("name") || "").trim();
-      var business = (data.get("business") || "").trim();
-      var city = (data.get("city") || "").trim();
-      var product = data.get("product") || "";
-      var qty = (data.get("quantity") || "").trim();
-      var message = (data.get("message") || "").trim();
+  // parchi: a paper order slip that becomes a WhatsApp message
+  var form = document.getElementById("parchi");
+  if (!form) return;
+  var products = ["Rajmash", "Mash (Urad)", "Roosi Chana", "Kabuli Chana", "Toor Dal", "Besan", "Lobia"];
+  var qty = products.map(function () { return 0; });
+  var list = form.querySelector(".p-rows");
+  var hint = form.querySelector(".hint");
 
-      var lines = ["Hello Durga Sales, I'd like to enquire about bulk pulses supply."];
-      if (name) lines.push("Name: " + name);
-      if (business) lines.push("Business: " + business);
-      if (city) lines.push("City: " + city);
-      if (product) lines.push("Product: " + product);
-      if (qty) lines.push("Quantity needed: " + qty);
-      if (message) lines.push("Message: " + message);
+  products.forEach(function (name, i) {
+    var li = document.createElement("li");
+    li.innerHTML =
+      '<span>' + name + '</span>' +
+      '<span class="qty"><button type="button" aria-label="One bag less of ' + name + '">−</button>' +
+      '<output aria-live="polite">0 bags</output>' +
+      '<button type="button" aria-label="One bag more of ' + name + '">+</button></span>';
+    var out = li.querySelector("output");
+    var bs = li.querySelectorAll("button");
+    var render = function () {
+      out.textContent = qty[i] + (qty[i] === 1 ? " bag" : " bags");
+      li.classList.toggle("on", qty[i] > 0);
+    };
+    bs[0].addEventListener("click", function () { qty[i] = Math.max(0, qty[i] - 1); render(); });
+    bs[1].addEventListener("click", function () { qty[i] = Math.min(999, qty[i] + 1); render(); });
+    list.appendChild(li);
+  });
 
-      var text = encodeURIComponent(lines.join("\n"));
-      window.open("https://wa.me/" + WA_NUMBER + "?text=" + text, "_blank");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var lines = [];
+    products.forEach(function (name, i) {
+      if (qty[i] > 0) lines.push("• " + name + ": " + qty[i] + (qty[i] === 1 ? " bag" : " bags"));
     });
-  }
-
-  /* Prefill product interest from ?product= query param (used by product page CTAs) */
-  var params = new URLSearchParams(window.location.search);
-  var productParam = params.get("product");
-  if (productParam) {
-    var select = document.querySelector('select[name="product"]');
-    if (select) {
-      Array.prototype.forEach.call(select.options, function (opt) {
-        if (opt.value.toLowerCase() === productParam.toLowerCase()) {
-          select.value = opt.value;
-        }
-      });
+    if (!lines.length) {
+      hint.textContent = "Add at least one bag first.";
+      hint.style.color = "#9c1f2b";
+      return;
     }
-  }
-});
+    var name = form.elements.name.value.trim();
+    var shop = form.elements.shop.value.trim();
+    var msg = ["Namaste Durga Sales, my parchi:", ""].concat(lines, [""]);
+    if (name) msg.push("Name: " + name);
+    if (shop) msg.push("Shop/Town: " + shop);
+    msg.push("Please share today's rate.");
+    window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(msg.join("\n")), "_blank", "noopener");
+  });
+})();
