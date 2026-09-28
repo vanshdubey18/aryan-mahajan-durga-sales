@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
           a.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent("Namaste, aaj ka bhav for " + t.label + "?");
           a.target = "_blank";
           a.rel = "noopener";
-          a.innerHTML = "<strong>" + t.labelHi + "</strong><span>" + t.label + "</span><em>Ask rate →</em>";
+          a.innerHTML = "<strong>" + t.label + "</strong><em>Ask rate →</em>";
           list.appendChild(a);
         });
         vGrid.appendChild(list);
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
         el.className = "vm-item";
         el.innerHTML =
           '<div class="vm-thumb"><img src="' + item.img + '" alt="' + item.label + '" loading="lazy"></div>' +
-          '<div class="vm-label"><strong>' + item.labelHi + '</strong><span>' + item.label + '</span>' +
+          '<div class="vm-label"><strong>' + item.label + '</strong>' +
           '<a class="vm-ask" href="https://wa.me/' + WA_NUMBER + '?text=' + waText + '" target="_blank" rel="noopener">' +
           '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.1a8.1 8.1 0 0 1-4.3-1.3l-.3-.2-2.9.9.9-2.8-.2-.3A8.1 8.1 0 1 1 12 20.1Z"/></svg>Ask rate</a></div>';
         vGrid.appendChild(el);
