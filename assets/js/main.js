@@ -86,7 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Chana White — Our Qualities",
       eyebrow: "DS Pulses",
       items: [
-        { img: "assets/img/varieties/chana-white-doubledollar.jpg", label: "Double Dollar Chana", labelHi: "डबल डॉलर चना" }
+        { img: "assets/img/varieties/chana-white-doubledollar.jpg", label: "Double Dollar Chana", labelHi: "डबल डॉलर चना" },
+        { img: "assets/img/varieties/chana-white-loose.jpg", label: "Safed Chana (Loose)", labelHi: "सफ़ेद चना" }
       ]
     },
     toor: {
