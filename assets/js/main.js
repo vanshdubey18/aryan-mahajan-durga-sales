@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.querySelectorAll("[data-gallery]").forEach(function (el) {
-      el.addEventListener("click", function () { openVarietyModal(el.getAttribute("data-gallery")); });
+      el.addEventListener("click", function (e) { e.preventDefault(); openVarietyModal(el.getAttribute("data-gallery")); });
       el.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openVarietyModal(el.getAttribute("data-gallery")); }
       });
