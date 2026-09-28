@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
       eyebrow: "DS Pulses",
       items: [
         { img: "assets/img/varieties/lobia-blackeye-madagascar.jpg", label: "Black Eye Lobia — Madagascar", labelHi: "ब्लैक आई लोबिया (मेडागास्कर)" },
+        { img: "assets/img/varieties/lobia-whiteeye-brazil.jpg", label: "White Eye Lobia — Brazil", labelHi: "व्हाइट आई लोबिया (ब्राज़ील)" },
         { img: "assets/img/varieties/lobia-lal.jpg", label: "Lal Lobia", labelHi: "लाल लोबिया" }
       ]
     },
@@ -135,7 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
         { label: "Patent Blue Besan (Super Fine)", labelHi: "पेटेंट ब्लू बेसन" },
         { label: "Rajdhani Dhokla Besan", labelHi: "ढोकला बेसन" },
         { label: "Super Diamond Besan (Bhavnagari Gathiya)", labelHi: "सुपर डायमंड बेसन" },
-        { label: "Grit Besan (Gram Meal)", labelHi: "ग्रिट बेसन" }
+        { label: "Grit Besan (Gram Meal)", labelHi: "ग्रिट बेसन" },
+        { label: "Mosvan Besan", labelHi: "मोसवन बेसन" }
       ],
       items: []
     },
