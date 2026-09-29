@@ -160,7 +160,9 @@ document.addEventListener("DOMContentLoaded", function () {
         { img: "assets/img/varieties/puffed-gram.jpg", label: "Puffed Gram (Bhuna Chana)", labelHi: "भुना चना" },
         { img: "assets/img/varieties/moth.jpg", label: "Moth", labelHi: "मोठ" },
         { img: "assets/img/varieties/kulthi-desi.jpg", label: "Kulthi — Desi", labelHi: "कुल्थी (देसी)" },
-        { img: "assets/img/varieties/kulthi-punjabi.jpg", label: "Kulthi — Punjabi", labelHi: "कुल्थी (पंजाबी)" }
+        { img: "assets/img/varieties/kulthi-punjabi.jpg", label: "Kulthi — Punjabi", labelHi: "कुल्थी (पंजाबी)" },
+        { img: "assets/img/varieties/mattar-white.jpg", label: "Mattar White", labelHi: "मटर सफ़ेद" },
+        { img: "assets/img/varieties/mattar-green.jpg", label: "Mattar Green", labelHi: "मटर हरा" }
       ]
     }
   };
