@@ -406,7 +406,8 @@ nav.main-nav a.active { color: var(--maroon); border-color: var(--gold); }
 }
 .card-body h3 { margin-bottom: 2px; }
 .card-body p { font-size: 0.92rem; margin-bottom: 6px; }
-.card-body .btn { margin-top: auto; align-self: flex-start; }
+.card-body .btn { align-self: flex-start; }
+.card-body .card-actions { margin-top: auto; display: flex; gap: 10px; flex-wrap: wrap; }
 
 .nutri-line, .nutri-line-lg {
   display: flex;
