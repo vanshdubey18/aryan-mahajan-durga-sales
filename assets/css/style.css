@@ -511,6 +511,29 @@ nav.main-nav a.active { color: var(--maroon); border-color: var(--gold); }
 }
 .split-media .badge strong { display: block; font-family: var(--font-head); font-size: 1.4rem; color: var(--maroon); }
 .split-media .badge span { font-size: 0.78rem; color: var(--ink-soft); }
+.split-media .ribbon-badge {
+  position: absolute;
+  top: 18px;
+  left: -8px;
+  background: var(--maroon);
+  color: var(--white);
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 8px 20px 8px 16px;
+  border-radius: 0 6px 6px 0;
+  box-shadow: var(--shadow-md);
+}
+.split-media .ribbon-badge::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100%;
+  border-width: 6px 0 0 8px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--maroon-dark);
+}
 
 /* Brand strip */
 .brand-strip {
