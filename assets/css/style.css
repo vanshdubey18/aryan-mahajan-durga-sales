@@ -237,6 +237,80 @@ nav.main-nav a.active { color: var(--maroon); border-color: var(--gold); }
   border-radius: 2px;
 }
 
+/* ---------- Announcement bar ---------- */
+.announce-bar {
+  display: block;
+  background: linear-gradient(90deg, var(--maroon-dark) 0%, var(--maroon) 50%, var(--maroon-dark) 100%);
+  background-size: 200% 100%;
+  animation: announce-shift 6s ease-in-out infinite;
+  color: var(--white);
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+}
+.announce-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  padding: 12px 24px;
+  text-align: center;
+}
+.announce-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--gold);
+  color: var(--navy-darker);
+  font-weight: 800;
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.announce-tag::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--maroon);
+  animation: announce-pulse 1.6s ease-in-out infinite;
+}
+.announce-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.announce-arrow {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  animation: announce-bounce 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.announce-bar:hover { filter: brightness(1.08); }
+@keyframes announce-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes announce-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.6; }
+}
+@keyframes announce-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .announce-bar, .announce-tag::before, .announce-arrow { animation: none; }
+}
+@media (max-width: 560px) {
+  .announce-inner { padding: 10px 16px; }
+  .announce-text { font-size: 0.82rem; }
+}
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
